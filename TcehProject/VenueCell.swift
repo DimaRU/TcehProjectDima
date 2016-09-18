@@ -11,7 +11,8 @@ import UIKit
 class VenueCell: UITableViewCell {
 
     @IBOutlet weak var labelVenue: UILabel!
-
+    @IBOutlet weak var labelDistance: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

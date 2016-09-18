@@ -16,7 +16,7 @@ protocol CategoriesViewControllerDelegate {
 
 class CategoriesViewController: UITableViewController {
 
-    var categories = ["Food", "Entertainment", "Rransport", "Flat", "Gas", "Etc"]
+    var categories = ["Food", "Entertainment", "Transport", "Flat", "Gas", "Etc"]
 
     var delegate: CategoriesViewControllerDelegate?
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A100D521D8DCD8800D012EE /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A100D511D8DCD8800D012EE /* Venue.swift */; };
 		0A1D18261D871D6000B76B81 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0A1D18241D871D6000B76B81 /* Model.xcdatamodeld */; };
 		0A1D18281D8720B900B76B81 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1D18271D8720B900B76B81 /* CoreDataHelper.swift */; };
 		0A1F381D1D7CA852002FF1D4 /* VenuesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1F381C1D7CA852002FF1D4 /* VenuesViewController.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A100D511D8DCD8800D012EE /* Venue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
 		0A1D18251D871D6000B76B81 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		0A1D18271D8720B900B76B81 /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		0A1F381C1D7CA852002FF1D4 /* VenuesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VenuesViewController.swift; sourceTree = "<group>"; };
@@ -101,19 +103,20 @@
 				D5F4E53B1D773A0A004E4BC3 /* AppDelegate.swift */,
 				D5F4E53D1D773A0A004E4BC3 /* FirstViewController.swift */,
 				D5F4E53F1D773A0A004E4BC3 /* SecondViewController.swift */,
-				D5F4E5411D773A0A004E4BC3 /* Main.storyboard */,
-				D5F4E5441D773A0A004E4BC3 /* Assets.xcassets */,
-				D5F4E5461D773A0A004E4BC3 /* LaunchScreen.storyboard */,
-				D5F4E5491D773A0A004E4BC3 /* Info.plist */,
 				D5F4E54F1D7753F3004E4BC3 /* NewEntryViewController.swift */,
-				0A1F381C1D7CA852002FF1D4 /* VenuesViewController.swift */,
 				0A1F381E1D7CAB4D002FF1D4 /* CategoriesViewController.swift */,
 				0ACB03E71D7DD99500C3A6CB /* CategoryCell.swift */,
+				0A1F381C1D7CA852002FF1D4 /* VenuesViewController.swift */,
 				0AB002001D7EE887003F641D /* VenueCell.swift */,
-				0A52D43C1D80901A00237389 /* Entry.swift */,
+				0A100D511D8DCD8800D012EE /* Venue.swift */,
 				0A3BB9641D82A80500F4BD4C /* EntryCell.swift */,
-				0A1D18241D871D6000B76B81 /* Model.xcdatamodeld */,
+				0A52D43C1D80901A00237389 /* Entry.swift */,
 				0A1D18271D8720B900B76B81 /* CoreDataHelper.swift */,
+				D5F4E5411D773A0A004E4BC3 /* Main.storyboard */,
+				D5F4E5461D773A0A004E4BC3 /* LaunchScreen.storyboard */,
+				0A1D18241D871D6000B76B81 /* Model.xcdatamodeld */,
+				D5F4E5441D773A0A004E4BC3 /* Assets.xcassets */,
+				D5F4E5491D773A0A004E4BC3 /* Info.plist */,
 			);
 			path = TcehProject;
 			sourceTree = "<group>";
@@ -149,7 +152,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0800;
-				ORGANIZATIONNAME = Pronin;
+				ORGANIZATIONNAME = Borovikov;
 				TargetAttributes = {
 					D5F4E5371D773A0A004E4BC3 = {
 						CreatedOnToolsVersion = 7.3;
@@ -253,6 +256,7 @@
 				0A52D43D1D80901A00237389 /* Entry.swift in Sources */,
 				0A1F381D1D7CA852002FF1D4 /* VenuesViewController.swift in Sources */,
 				0A1D18261D871D6000B76B81 /* Model.xcdatamodeld in Sources */,
+				0A100D521D8DCD8800D012EE /* Venue.swift in Sources */,
 				D5F4E53E1D773A0A004E4BC3 /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

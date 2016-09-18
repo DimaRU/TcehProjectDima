@@ -14,7 +14,7 @@ class CoreDataHelper: NSObject {
     let coordinator: NSPersistentStoreCoordinator
     let context: NSManagedObjectContext
     
-    static let instance = CoreDataHelper()
+    static let instance = CoreDataHelper()      // One instance per app only
     
     private override init() {
         let fileManager = NSFileManager.defaultManager()
@@ -30,7 +30,7 @@ class CoreDataHelper: NSObject {
         do {
             try self.coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: nil)
         } catch {
-            print("Not success :(")
+            print("Can't open pesistent storage")
         }
         
         self.context = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
