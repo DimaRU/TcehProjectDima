@@ -20,7 +20,7 @@ class Venue: NSManagedObject {
         let entity = NSEntityDescription.entityForName("Venue",
                                                        inManagedObjectContext: CoreDataHelper.instance.context)!
        
-        self.init(entity:entity, insertIntoManagedObjectContext: CoreDataHelper.instance.context)
+        self.init(entity:entity, insertIntoManagedObjectContext: nil)
         
         self.name = name
         self.latitude = latitude

@@ -18,7 +18,7 @@ class NewEntryViewController: UIViewController, CategoriesViewControllerDelegate
     
     var delegate: NewEntryViewControllerDelegate?
     
-    var selectedVenue: String?
+    var selectedVenue: Venue?
     var selectedCategory: String?
     
     override func viewDidLoad() {
@@ -57,7 +57,9 @@ class NewEntryViewController: UIViewController, CategoriesViewControllerDelegate
                 //перестань быть активным элементом
                 textFieldAmount.resignFirstResponder()
                 
-                if let venue = selectedVenue, category = selectedVenue {
+                if let venue = selectedVenue, category = selectedCategory {
+                    
+                    CoreDataHelper.instance.context.insertObject(venue)
                     let entry = Entry(amount: amount, venue: venue, category: category)
                     // Передать это нижестоящему классу (экрану)
                     delegate?.entryCreated(entry)
@@ -107,10 +109,10 @@ class NewEntryViewController: UIViewController, CategoriesViewControllerDelegate
         selectedCategory = category
     }
     
-    func venueSelected(venue: String) {
+    func venueSelected(venue: Venue) {
 
         dismissViewControllerAnimated(true, completion: nil)
-        buttonVenues.setTitle(venue, forState: .Normal)
+        buttonVenues.setTitle(venue.name, forState: .Normal)
         
         selectedVenue = venue
     }

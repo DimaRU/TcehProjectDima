@@ -13,10 +13,10 @@ import CoreData
 class Entry: NSManagedObject {
     @NSManaged var createdAt: NSDate   // Дата траты
     @NSManaged var amount: Double      // Сумма траты
-    @NSManaged var venue: String       // Местро траты
+    @NSManaged var venue: Venue       // Местро траты
     @NSManaged var category: String    // Категория траты
     
-    convenience init(amount: Double, venue: String, category: String) {
+    convenience init(amount: Double, venue: Venue, category: String) {
         let entity = NSEntityDescription.entityForName("Entry", inManagedObjectContext: CoreDataHelper.instance.context)!
         
         self.init(entity: entity, insertIntoManagedObjectContext: CoreDataHelper.instance.context)

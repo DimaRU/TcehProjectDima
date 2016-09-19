@@ -11,7 +11,7 @@ import Alamofire
 import SwiftyJSON
 
 protocol VenuesViewControllerDelegate {
-    func venueSelected(venue: String)
+    func venueSelected(venue: Venue)
 }
 
 class VenuesViewController: UITableViewController {
@@ -78,7 +78,7 @@ class VenuesViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         let venue = venues[indexPath.row]
-        delegate?.venueSelected(venue.name)
+        delegate?.venueSelected(venue)
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 
