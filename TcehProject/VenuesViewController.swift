@@ -9,27 +9,55 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import CoreLocation
 
 protocol VenuesViewControllerDelegate {
     func venueSelected(venue: Venue)
 }
 
-class VenuesViewController: UITableViewController {
+class VenuesViewController: UITableViewController, CLLocationManagerDelegate {
     
     var venues = [Venue]()
 
     var delegate: VenuesViewControllerDelegate?
+    
+    let locationManager = CLLocationManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let url = "https://api.foursquare.com/v2/venues/search?ll=40.7,-74&client_id=HYIJPMWKUCHP0OAD4QG2R21XJLLVTWIHASBJGPQ2M342IFAM&client_secret=04MUOTIS5QVIN2YJZL55LGN4FXRRZTL1XXGWFZGBUBMZ4JOK&v=20160914"
+        locationManager.delegate = self
         
-        Alamofire.request(.GET, url).responseJSON { response in
+        //let refreshControl = UIRefreshControl()
+        
+        let refreshcontrol = UIRefreshControl()
+        
+        refreshcontrol.addTarget(self, action: #selector(self.refreshLocation), forControlEvents: .ValueChanged)
+
+        self.refreshControl = refreshcontrol
+    }
+
+    func refreshLocation() {
+        locationManager.startUpdatingLocation()
+    }
+    
+    
+    func loadNearbyVenue(location:CLLocation) {
+        let lat = location.coordinate.latitude
+        let lon = location.coordinate.longitude
+        
+        let params = [
+            "ll": "\(lat),\(lon)",
+            "client_id": "HYIJPMWKUCHP0OAD4QG2R21XJLLVTWIHASBJGPQ2M342IFAM",
+            "client_secret": "04MUOTIS5QVIN2YJZL55LGN4FXRRZTL1XXGWFZGBUBMZ4JOK",
+            "v": "20160914"
+        ]
+        
+        Alamofire.request(.GET, "https://api.foursquare.com/v2/venues/search", parameters: params).responseJSON { response in
             if let value = response.result.value {
                 let json = JSON(value)
                 let jsonArray = json["response"]["venues"].array!
-            
+                
                 var venues = [Venue]()
                 for obj in jsonArray {
                     let name = obj["name"].string!
@@ -41,12 +69,17 @@ class VenuesViewController: UITableViewController {
                     venues.append(venue)
                 }
                 
+                venues.sortInPlace({ $0.distance < $1.distance})
                 self.venues = venues
                 self.tableView.reloadData()
+                self.refreshControl!.endRefreshing()
             }
         }
+        
     }
-
+    
+    
+    
     @IBAction func tapCancel(sender: AnyObject) {
         
         presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
@@ -82,5 +115,26 @@ class VenuesViewController: UITableViewController {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+
+        if let location = locations.last {
+            loadNearbyVenue(location)
+            locationManager.stopUpdatingLocation()
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        
+        switch status {
+        case .AuthorizedAlways, .AuthorizedWhenInUse:
+            locationManager.startUpdatingLocation()
+        case .NotDetermined:
+            locationManager.requestWhenInUseAuthorization()
+        default:
+            print("We are very dissapointed")
+            // present dialog 'please enable location access'
+        }
+    }
 
 }
