@@ -16,7 +16,24 @@ protocol CategoriesViewControllerDelegate {
 
 class CategoriesViewController: UITableViewController {
 
-    var categories = ["Food", "Entertainment", "Transport", "Flat", "Gas", "Etc"]
+    var categories: [String] {
+        get {
+            if let storedCategories = NSUserDefaults.standardUserDefaults().objectForKey("categories") as? [String] {
+                if storedCategories != [] {
+                    return storedCategories
+                }
+            }
+            // Inital values list, localisation!!!
+            let storedCategories = ["Food", "Entertainment", "Transport", "Flat", "Gas", "Etc"]
+            NSUserDefaults.standardUserDefaults().setObject(storedCategories, forKey: "categories")
+            NSUserDefaults.standardUserDefaults().synchronize()
+            return storedCategories
+        }
+        set {
+            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "categories")
+            NSUserDefaults.standardUserDefaults().synchronize()
+        }
+    }
 
     var delegate: CategoriesViewControllerDelegate?
 
@@ -72,4 +89,19 @@ class CategoriesViewController: UITableViewController {
         // убрать выделение с ячейки
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
+    
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        
+        // localisation!!!
+        return categories[indexPath.row] != "Etc"
+    }
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if editingStyle == .Delete {
+            categories.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        }
+    }
+    
 }
