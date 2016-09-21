@@ -136,7 +136,11 @@
                                 <action selector="tapCancel:" destination="gOm-RK-CXZ" id="4Sm-Sq-9Hh"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="5eP-c7-2kU"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="5eP-c7-2kU">
+                            <connections>
+                                <action selector="tapAdd:" destination="gOm-RK-CXZ" id="8h7-De-F33"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MPx-Km-Qfv" userLabel="First Responder" sceneMemberID="firstResponder"/>

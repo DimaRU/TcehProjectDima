@@ -54,6 +54,27 @@ class CategoriesViewController: UITableViewController {
 
     }
 
+    @IBAction func tapAdd(sender: AnyObject) {
+    
+        let alert = UIAlertController(title: "New category", message: nil, preferredStyle: .Alert)
+        
+        alert.addTextFieldWithConfigurationHandler({ textField in
+            textField.placeholder = "Category name..."
+        })
+   
+        let okAction = UIAlertAction(title: "Ok", style: .Default) {_ in
+            if let text = alert.textFields?.first?.text {
+            self.categories.append(text)
+            self.tableView.reloadData()
+            }
+        }
+        alert.addAction(okAction)
+        self.presentViewController(alert, animated: true, completion: nil)
+        
+    }
+    
+    
+    
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {

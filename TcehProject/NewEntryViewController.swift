@@ -29,7 +29,7 @@ class NewEntryViewController: UIViewController, CategoriesViewControllerDelegate
 
         //тут мы ставим текст
         textFieldAmount.text = ""
-        textFieldAmount.placeholder = "Enter amount"
+        textFieldAmount.placeholder = "0"
         
         // Set Currency label text
         currencyLabel.text = "руб."
@@ -63,8 +63,22 @@ class NewEntryViewController: UIViewController, CategoriesViewControllerDelegate
                     let entry = Entry(amount: amount, venue: venue, category: category)
                     // Передать это нижестоящему классу (экрану)
                     delegate?.entryCreated(entry)
+                } else {
+                    // Alert - Please select category and venue
+                    let alert = UIAlertController(title: nil, message: "Please select category and venue", preferredStyle: .Alert)
+                    let okAction = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+                    alert.addAction(okAction)
+                    self.presentViewController(alert, animated: true, completion: nil)
                 }
+            
+            } else {
+                // Alert - Please enter amount
+                let alert = UIAlertController(title: nil, message: "Please enter amount", preferredStyle: .Alert)
+                let okAction = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+                alert.addAction(okAction)
+                self.presentViewController(alert, animated: true, completion: nil)
             }
+            
         }
     }
     
