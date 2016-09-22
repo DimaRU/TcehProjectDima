@@ -26,12 +26,12 @@ class CategoriesViewController: UITableViewController {
             // Inital values list, localisation!!!
             let storedCategories = ["Food", "Entertainment", "Transport", "Flat", "Gas", "Etc"]
             NSUserDefaults.standardUserDefaults().setObject(storedCategories, forKey: "categories")
-            NSUserDefaults.standardUserDefaults().synchronize()
+            //NSUserDefaults.standardUserDefaults().synchronize()
             return storedCategories
         }
         set {
             NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "categories")
-            NSUserDefaults.standardUserDefaults().synchronize()
+            //NSUserDefaults.standardUserDefaults().synchronize()
         }
     }
 
@@ -65,10 +65,17 @@ class CategoriesViewController: UITableViewController {
         let okAction = UIAlertAction(title: "Ok", style: .Default) {_ in
             if let text = alert.textFields?.first?.text {
             self.categories.append(text)
-            self.tableView.reloadData()
+            //self.tableView.reloadData()
+
+            let indexPath = NSIndexPath(forRow: self.categories.count - 1, inSection: 0)
+            self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
             }
         }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        
         alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        
         self.presentViewController(alert, animated: true, completion: nil)
         
     }
@@ -89,12 +96,8 @@ class CategoriesViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("CategoryCell") as! CategoryCell
         
-        //cell.labelCategory.text = "Row #\(indexPath.row)"
         let category = categories[indexPath.row]
         cell.labelCategory.text = category
-        
-        //cell.selectionStyle = UITableView
-        //cell.separatorInset.left = 0
         
         return cell
     }
