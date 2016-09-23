@@ -6,14 +6,11 @@ protocol NewEntryViewControllerDelegate {
 }
 
 
-class NewEntryViewController: UIViewController, CategoriesViewControllerDelegate, VenuesViewControllerDelegate {
+class NewEntryViewController: UIViewController, CategoriesViewControllerDelegate, VenuesViewControllerDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var textFieldAmount: UITextField!
-
     @IBOutlet weak var currencyLabel: UILabel!
-    
     @IBOutlet weak var buttonCategories: UIButton!
-    
     @IBOutlet weak var buttonVenues: UIButton!
     
     var delegate: NewEntryViewControllerDelegate?
@@ -23,13 +20,10 @@ class NewEntryViewController: UIViewController, CategoriesViewControllerDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //cmd + / = закомментировать выделенные или текущую строку
-        //или снять обратно
 
-        //тут мы ставим текст
         textFieldAmount.text = ""
         textFieldAmount.placeholder = "0"
+        textFieldAmount.delegate = self         // Check abount field consistency
         
         // Set Currency label text
         currencyLabel.text = "руб."
@@ -96,7 +90,6 @@ class NewEntryViewController: UIViewController, CategoriesViewControllerDelegate
         
         if segue.identifier == "PresentCategories" {
             let navigationController = segue.destinationViewController as! UINavigationController
-            
             let categoriesController = navigationController.viewControllers[0] as! CategoriesViewController
             
             categoriesController.delegate = self
@@ -111,12 +104,10 @@ class NewEntryViewController: UIViewController, CategoriesViewControllerDelegate
             venuesController.delegate = self
             
         }
-       
-        
     }
 
     func categorySelected(category: String) {
-
+        
         dismissViewControllerAnimated(true, completion: nil)
         buttonCategories.setTitle(category, forState: .Normal)
         
@@ -129,5 +120,12 @@ class NewEntryViewController: UIViewController, CategoriesViewControllerDelegate
         buttonVenues.setTitle(venue.name, forState: .Normal)
         
         selectedVenue = venue
+    }
+    
+    // Check amount field consistency
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        
+        let resultString = (textField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
+        return resultString.isEmpty || Double(resultString) != nil
     }
 }
