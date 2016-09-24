@@ -1,7 +1,7 @@
 import UIKit
 import MapKit
 
-class SecondViewController: UIViewController, MKMapViewDelegate {
+class MapViewController: UIViewController, MKMapViewDelegate {
 
     let mapView = MKMapView()
     var entries = [Entry]()
@@ -23,8 +23,12 @@ class SecondViewController: UIViewController, MKMapViewDelegate {
         //shortest way | old-school
         mapView.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
     
+        //long way
+        //        let constraintLeading = NSLayoutConstraint(item: mapView, attribute: .Leading, relatedBy: .Equal, toItem: self.view, attribute: .Leading, multiplier: 1, constant: 0)
+        //        let constraintTrailing = NSLayoutConstraint.constraintsWithVisualFormat(
+        //            "[mapView]-(0)-|", options: .AlignAllLastBaseline, metrics: nil, views: ["mapView": mapView])
+        
     
-//    let constaintLeading = NSLayoutConstraint(item: mapView, attribute: .Leading, relatedBy: .Equal, toItem: self.view, attribute: .Leading, multiplier: 1, constant: 0)
         
         mapView.delegate = self
         // Настройки карты

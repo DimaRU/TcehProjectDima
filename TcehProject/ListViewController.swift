@@ -1,6 +1,6 @@
 import UIKit
 
-class FirstViewController: UIViewController, UITableViewDataSource, NewEntryViewControllerDelegate {
+class ListViewController: UIViewController, UITableViewDataSource, NewEntryViewControllerDelegate {
 
     @IBOutlet weak var tableEntries: UITableView!
     
