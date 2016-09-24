@@ -12,6 +12,8 @@ class VenueCell: UITableViewCell {
 
     @IBOutlet weak var labelVenue: UILabel!
     @IBOutlet weak var labelDistance: UILabel!
+    @IBOutlet weak var imageIcon: UIImageView!
+
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -50,17 +50,18 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GRx-zv-n3z">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="300" verticalHuggingPriority="251" horizontalCompressionResistancePriority="760" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GRx-zv-n3z">
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Y3X-iV-FlN" firstAttribute="top" secondItem="cuE-bt-BPK" secondAttribute="topMargin" id="0t8-mL-1ee"/>
-                                                <constraint firstItem="GRx-zv-n3z" firstAttribute="top" secondItem="cuE-bt-BPK" secondAttribute="topMargin" id="ins-Bx-BK8"/>
-                                                <constraint firstItem="Y3X-iV-FlN" firstAttribute="leading" secondItem="cuE-bt-BPK" secondAttribute="leadingMargin" id="tiw-ei-iqz"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="GRx-zv-n3z" secondAttribute="trailing" id="xyy-ui-tvK"/>
+                                                <constraint firstItem="Y3X-iV-FlN" firstAttribute="leading" secondItem="cuE-bt-BPK" secondAttribute="leadingMargin" constant="8" id="7dQ-Ic-1uT"/>
+                                                <constraint firstItem="GRx-zv-n3z" firstAttribute="centerY" secondItem="cuE-bt-BPK" secondAttribute="centerY" id="HZP-Gn-nPK"/>
+                                                <constraint firstItem="Y3X-iV-FlN" firstAttribute="centerY" secondItem="cuE-bt-BPK" secondAttribute="centerY" id="PYf-ct-WIY"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="GRx-zv-n3z" secondAttribute="trailing" constant="8" id="TXk-14-rSh"/>
+                                                <constraint firstItem="GRx-zv-n3z" firstAttribute="leading" secondItem="Y3X-iV-FlN" secondAttribute="trailing" constant="8" id="ihS-tN-4tz"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -163,23 +164,35 @@
                                     <frame key="frameInset" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MRI-LC-vvQ">
-                                            <frame key="frameInset" minX="13" minY="8" width="170" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MRI-LC-vvQ">
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="200m" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qlO-se-TIo">
-                                            <frame key="frameInset" minX="254" minY="11" width="51" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="300" verticalHuggingPriority="251" horizontalCompressionResistancePriority="800" text="200m" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qlO-se-TIo">
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rW1-uv-72K">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="40" id="xTj-3F-n62"/>
+                                                <constraint firstAttribute="height" constant="40" id="y2G-mm-bA6"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="qlO-se-TIo" firstAttribute="leading" secondItem="MRI-LC-vvQ" secondAttribute="trailing" constant="8" id="HDN-T0-CFt"/>
+                                        <constraint firstItem="rW1-uv-72K" firstAttribute="centerY" secondItem="R7Z-Rq-CZp" secondAttribute="centerY" id="RUF-xt-Eh7"/>
+                                        <constraint firstItem="rW1-uv-72K" firstAttribute="leading" secondItem="R7Z-Rq-CZp" secondAttribute="leading" constant="8" id="T1D-5i-qzv"/>
+                                        <constraint firstItem="MRI-LC-vvQ" firstAttribute="leading" secondItem="rW1-uv-72K" secondAttribute="trailing" constant="8" id="aef-5r-pOJ"/>
+                                        <constraint firstItem="MRI-LC-vvQ" firstAttribute="centerY" secondItem="R7Z-Rq-CZp" secondAttribute="centerY" id="i1Y-Oa-3de"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="qlO-se-TIo" secondAttribute="trailing" constant="8" id="vqk-ZB-eee"/>
+                                        <constraint firstItem="qlO-se-TIo" firstAttribute="centerY" secondItem="R7Z-Rq-CZp" secondAttribute="centerY" id="xgY-aC-WaK"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="imageIcon" destination="rW1-uv-72K" id="57i-hP-kqv"/>
                                     <outlet property="labelDistance" destination="qlO-se-TIo" id="h4K-iJ-w6P"/>
                                     <outlet property="labelVenue" destination="MRI-LC-vvQ" id="MMF-Tv-n4g"/>
                                 </connections>
@@ -200,7 +213,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Ww-jV-DQP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3225" y="-44"/>
+            <point key="canvasLocation" x="3224.8000000000002" y="-44.527736131934034"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="6lR-UE-fa3">

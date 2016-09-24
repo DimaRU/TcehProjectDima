@@ -15,8 +15,9 @@ class Venue: NSManagedObject {
     @NSManaged var latitude: Double
     @NSManaged var longitude: Double
     @NSManaged var distance: Int
+    @NSManaged var categoryImageURL: String
     
-    convenience init(name: String, latitude: Double, longitude: Double, distance: Int) {
+    convenience init(name: String, latitude: Double, longitude: Double, distance: Int, categoryImageURL: String) {
         let entity = NSEntityDescription.entityForName("Venue",
                                                        inManagedObjectContext: CoreDataHelper.instance.context)!
        
@@ -26,6 +27,7 @@ class Venue: NSManagedObject {
         self.latitude = latitude
         self.longitude = longitude
         self.distance = distance
+        self.categoryImageURL = categoryImageURL
     }
 
     class func loadVenues() -> [Venue] {

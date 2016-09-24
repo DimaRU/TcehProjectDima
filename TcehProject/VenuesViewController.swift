@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import CoreLocation
+import SDWebImage
 
 protocol VenuesViewControllerDelegate {
     func venueSelected(venue: Venue)
@@ -27,13 +28,9 @@ class VenuesViewController: UITableViewController, CLLocationManagerDelegate {
         super.viewDidLoad()
         
         locationManager.delegate = self
-        
-        //let refreshControl = UIRefreshControl()
-        
+ 
         let refreshcontrol = UIRefreshControl()
-        
         refreshcontrol.addTarget(self, action: #selector(self.refreshLocation), forControlEvents: .ValueChanged)
-
         self.refreshControl = refreshcontrol
     }
 
@@ -65,7 +62,13 @@ class VenuesViewController: UITableViewController, CLLocationManagerDelegate {
                     let latitude = obj["location"]["lat"].double!
                     let longitude = obj["location"]["lng"].double!
                     
-                    let venue = Venue(name: name, latitude: latitude, longitude: longitude, distance: distance)
+                    var categoryImageURL = "https://ss3.4sqi.net/img/categories_v2/shops/default_bg_64.png"
+                    if let venueCategory = obj["categories"].array?.first {
+                        categoryImageURL = venueCategory["icon"]["prefix"].string! + "bg_64" + venueCategory["icon"]["suffix"].string!
+                    }
+                    print(categoryImageURL)
+                    
+                    let venue = Venue(name: name, latitude: latitude, longitude: longitude, distance: distance, categoryImageURL: categoryImageURL)
                     venues.append(venue)
                 }
                 
@@ -104,6 +107,7 @@ class VenuesViewController: UITableViewController, CLLocationManagerDelegate {
         let venue = venues[indexPath.row] as Venue
         cell.labelVenue.text = venue.name
         cell.labelDistance.text = "\(venue.distance) m."
+        cell.imageIcon.sd_setImageWithURL(NSURL(string: venue.categoryImageURL))
 
         return cell
     }

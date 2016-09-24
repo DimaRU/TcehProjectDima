@@ -102,11 +102,11 @@
 		D5F4E53A1D773A0A004E4BC3 /* TcehProject */ = {
 			isa = PBXGroup;
 			children = (
-				D5F4E53B1D773A0A004E4BC3 /* AppDelegate.swift */,
 				D5F4E53D1D773A0A004E4BC3 /* ListViewController.swift */,
 				D5F4E53F1D773A0A004E4BC3 /* MapViewController.swift */,
 				0A45B8161D95B9C8006547CD /* SettingsViewController.swift */,
 				D5F4E54F1D7753F3004E4BC3 /* NewEntryViewController.swift */,
+				D5F4E53B1D773A0A004E4BC3 /* AppDelegate.swift */,
 				0A1F381E1D7CAB4D002FF1D4 /* CategoriesViewController.swift */,
 				0ACB03E71D7DD99500C3A6CB /* CategoryCell.swift */,
 				0A1F381C1D7CA852002FF1D4 /* VenuesViewController.swift */,
