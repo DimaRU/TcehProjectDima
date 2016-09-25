@@ -17,6 +17,8 @@
 		0A52D43D1D80901A00237389 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A52D43C1D80901A00237389 /* Entry.swift */; };
 		0AB002011D7EE887003F641D /* VenueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB002001D7EE887003F641D /* VenueCell.swift */; };
 		0ACB03E81D7DD99500C3A6CB /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACB03E71D7DD99500C3A6CB /* CategoryCell.swift */; };
+		0AF2B0F11D97F3550032E340 /* MKMapViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF2B0F01D97F3550032E340 /* MKMapViewExtension.swift */; };
+		0AF2B0F31D98018E0032E340 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AF2B0F21D98018E0032E340 /* MapKit.framework */; };
 		BB4B7D5E919351D3C9C16ABC /* Pods_TcehProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97BCD9311BCF193DCE8F254F /* Pods_TcehProject.framework */; };
 		D5F4E53C1D773A0A004E4BC3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F4E53B1D773A0A004E4BC3 /* AppDelegate.swift */; };
 		D5F4E53E1D773A0A004E4BC3 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F4E53D1D773A0A004E4BC3 /* ListViewController.swift */; };
@@ -38,6 +40,8 @@
 		0A52D43C1D80901A00237389 /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
 		0AB002001D7EE887003F641D /* VenueCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VenueCell.swift; sourceTree = "<group>"; };
 		0ACB03E71D7DD99500C3A6CB /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		0AF2B0F01D97F3550032E340 /* MKMapViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKMapViewExtension.swift; sourceTree = "<group>"; };
+		0AF2B0F21D98018E0032E340 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		229B61132DCDB6B6BB13901A /* Pods-TcehProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TcehProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TcehProject/Pods-TcehProject.debug.xcconfig"; sourceTree = "<group>"; };
 		96A9E0048EFE468104668E79 /* Pods-TcehProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TcehProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-TcehProject/Pods-TcehProject.release.xcconfig"; sourceTree = "<group>"; };
 		97BCD9311BCF193DCE8F254F /* Pods_TcehProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TcehProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -57,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AF2B0F31D98018E0032E340 /* MapKit.framework in Frameworks */,
 				BB4B7D5E919351D3C9C16ABC /* Pods_TcehProject.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -76,6 +81,7 @@
 		B10CBDEA4E957616797D6590 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0AF2B0F21D98018E0032E340 /* MapKit.framework */,
 				97BCD9311BCF193DCE8F254F /* Pods_TcehProject.framework */,
 			);
 			name = Frameworks;
@@ -104,6 +110,7 @@
 			children = (
 				D5F4E53D1D773A0A004E4BC3 /* ListViewController.swift */,
 				D5F4E53F1D773A0A004E4BC3 /* MapViewController.swift */,
+				0AF2B0F01D97F3550032E340 /* MKMapViewExtension.swift */,
 				0A45B8161D95B9C8006547CD /* SettingsViewController.swift */,
 				D5F4E54F1D7753F3004E4BC3 /* NewEntryViewController.swift */,
 				D5F4E53B1D773A0A004E4BC3 /* AppDelegate.swift */,
@@ -161,6 +168,11 @@
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = 9BEQ8V4XH9;
 						LastSwiftMigration = 0800;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -248,6 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AF2B0F11D97F3550032E340 /* MKMapViewExtension.swift in Sources */,
 				D5F4E5401D773A0A004E4BC3 /* MapViewController.swift in Sources */,
 				D5F4E53C1D773A0A004E4BC3 /* AppDelegate.swift in Sources */,
 				0A1F381F1D7CAB4D002FF1D4 /* CategoriesViewController.swift in Sources */,

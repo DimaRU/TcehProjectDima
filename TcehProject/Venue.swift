@@ -14,10 +14,10 @@ class Venue: NSManagedObject {
     @NSManaged var name: String
     @NSManaged var latitude: Double
     @NSManaged var longitude: Double
-    @NSManaged var distance: Int
+    @NSManaged var distance: Int64
     @NSManaged var categoryImageURL: String
     
-    convenience init(name: String, latitude: Double, longitude: Double, distance: Int, categoryImageURL: String) {
+    convenience init(name: String, latitude: Double, longitude: Double, distance: Int64, categoryImageURL: String) {
         let entity = NSEntityDescription.entityForName("Venue",
                                                        inManagedObjectContext: CoreDataHelper.instance.context)!
        

@@ -1,10 +1,12 @@
 import UIKit
 import MapKit
 
+
 class MapViewController: UIViewController, MKMapViewDelegate {
 
     let mapView = MKMapView()
     var entries = [Entry]()
+    
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -17,18 +19,24 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupMapView()
+        setupScaleButtons()
+    }
+    
+    func setupMapView() {
+
         self.view.addSubview(mapView)
         //Размер + положение на экране
         mapView.frame = self.view.bounds
         //shortest way | old-school
         mapView.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
-    
+        
         //long way
         //        let constraintLeading = NSLayoutConstraint(item: mapView, attribute: .Leading, relatedBy: .Equal, toItem: self.view, attribute: .Leading, multiplier: 1, constant: 0)
         //        let constraintTrailing = NSLayoutConstraint.constraintsWithVisualFormat(
         //            "[mapView]-(0)-|", options: .AlignAllLastBaseline, metrics: nil, views: ["mapView": mapView])
         
-    
+        
         
         mapView.delegate = self
         // Настройки карты
@@ -36,9 +44,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         mapView.userTrackingMode = .Follow
         mapView.showsScale = true
         mapView.showsCompass = true
-        //mapView.mapType = .Satellite
+        mapView.mapType = .Standard
+        
     }
-    
 
     func addAnnotations()  {
         mapView.removeAnnotations(mapView.annotations)
@@ -78,6 +86,54 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         view!.animatesDrop = true
         
         return view!
+        
+    }
+    
+    func tapButtonPlus() {
+        
+        let zoomLevel: Double = mapView.zoomLevel() + 1
+        mapView.setCenterCoordinate(mapView.centerCoordinate, zoomLevel: zoomLevel, animated: true)
+    }
+    
+    func tapButtonMinus() {
+        
+        let zoomLevel: Double = mapView.zoomLevel() - 1
+        mapView.setCenterCoordinate(mapView.centerCoordinate, zoomLevel: zoomLevel, animated: true)
+    }
+    
+    
+    func setupScaleButtons() {
+        
+        let buttonPlus = UIButton(type: .Custom)
+        
+        buttonPlus.translatesAutoresizingMaskIntoConstraints = false
+        buttonPlus.frame = CGRectMake(0, 0, 30, 30)
+        
+        buttonPlus.setImage(UIImage(named: "1474761840_add.png"), forState: .Normal)
+        buttonPlus.addTarget(self, action: #selector(tapButtonPlus), forControlEvents: .TouchUpInside)
+        
+        self.view.addSubview(buttonPlus)
+        
+        //Trailing edge
+        NSLayoutConstraint(item: buttonPlus, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .TrailingMargin, multiplier: 1.0, constant: 8.0).active = true
+        // Up center
+        NSLayoutConstraint(item: buttonPlus, attribute: .CenterY, relatedBy: .Equal, toItem: view, attribute: .CenterY, multiplier: 1.0, constant: -30).active = true
+        
+        
+        let buttonMinus = UIButton(type: .Custom)
+        
+        buttonMinus.translatesAutoresizingMaskIntoConstraints = false
+        buttonMinus.frame = CGRectMake(0, 0, 30, 30)
+        
+        buttonMinus.setImage(UIImage(named: "1474761917_sub.png"), forState: .Normal)
+        buttonMinus.addTarget(self, action: #selector(tapButtonMinus), forControlEvents: .TouchUpInside)
+        
+        self.view.addSubview(buttonMinus)
+        
+        //Trailing edge
+        NSLayoutConstraint(item: buttonMinus, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .TrailingMargin, multiplier: 1.0, constant: 8.0).active = true
+        // Up center
+        NSLayoutConstraint(item: buttonMinus, attribute: .CenterY, relatedBy: .Equal, toItem: view, attribute: .CenterY, multiplier: 1.0, constant: 30).active = true
         
     }
     

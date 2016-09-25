@@ -68,7 +68,7 @@ class VenuesViewController: UITableViewController, CLLocationManagerDelegate {
                     }
                     print(categoryImageURL)
                     
-                    let venue = Venue(name: name, latitude: latitude, longitude: longitude, distance: distance, categoryImageURL: categoryImageURL)
+                    let venue = Venue(name: name, latitude: latitude, longitude: longitude, distance: Int64(distance), categoryImageURL: categoryImageURL)
                     venues.append(venue)
                 }
                 
