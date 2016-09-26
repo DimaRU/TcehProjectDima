@@ -21,6 +21,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
         setupMapView()
         setupScaleButtons()
+        setupMapTypeControl()
     }
     
     func setupMapView() {
@@ -131,12 +132,42 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         self.view.addSubview(buttonMinus)
         
         //Trailing edge
-        NSLayoutConstraint(item: buttonMinus, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .TrailingMargin, multiplier: 1.0, constant: 8.0).active = true
+        NSLayoutConstraint(item: buttonMinus, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .TrailingMargin, multiplier: 1.0, constant: 8).active = true
         // Up center
         NSLayoutConstraint(item: buttonMinus, attribute: .CenterY, relatedBy: .Equal, toItem: view, attribute: .CenterY, multiplier: 1.0, constant: 30).active = true
         
     }
     
+    func mapTypeCotrolChanged(sender:UISegmentedControl!)
+    {
+        print("Selected Segment Index: \(sender.selectedSegmentIndex)")
+        switch sender.selectedSegmentIndex {
+        case 0:
+            mapView.mapType = .Standard
+        case 1:
+            mapView.mapType = .Hybrid
+        case 2:
+            mapView.mapType = .Satellite
+        default:
+            return
+        }
+    }
+    
+    func setupMapTypeControl() {
+        
+        let mapTypeCotrol = UISegmentedControl(items: ["Map", "Hybrid", "Sattelite"])
+        mapTypeCotrol.tintColor = UIColor.blackColor()
+        mapTypeCotrol.frame = CGRectMake(0, 500, 170, 20)
+        mapTypeCotrol.selectedSegmentIndex = 0
+        //mapTypeCotrol.translatesAutoresizingMaskIntoConstraints = false
+        mapTypeCotrol.addTarget(self, action: #selector(mapTypeCotrolChanged), forControlEvents: .ValueChanged)
+        
+        self.view.addSubview(mapTypeCotrol)
+
+        NSLayoutConstraint(item: mapTypeCotrol, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .TrailingMargin, multiplier: 1.0, constant: 8).active = true
+        NSLayoutConstraint(item: mapTypeCotrol, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: 8).active = true
+        
+    }
     
 }
 
