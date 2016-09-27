@@ -108,7 +108,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         let buttonPlus = UIButton(type: .Custom)
         
         buttonPlus.translatesAutoresizingMaskIntoConstraints = false
-        buttonPlus.frame = CGRectMake(0, 0, 30, 30)
         
         buttonPlus.setImage(UIImage(named: "1474761840_add.png"), forState: .Normal)
         buttonPlus.addTarget(self, action: #selector(tapButtonPlus), forControlEvents: .TouchUpInside)
@@ -116,9 +115,13 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         self.view.addSubview(buttonPlus)
         
         //Trailing edge
-        NSLayoutConstraint(item: buttonPlus, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .TrailingMargin, multiplier: 1.0, constant: 8.0).active = true
+        let c1 = NSLayoutConstraint(item: buttonPlus, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .TrailingMargin, multiplier: 1.0, constant: 8.0)
         // Up center
-        NSLayoutConstraint(item: buttonPlus, attribute: .CenterY, relatedBy: .Equal, toItem: view, attribute: .CenterY, multiplier: 1.0, constant: -30).active = true
+        let c2 = NSLayoutConstraint(item: buttonPlus, attribute: .CenterY, relatedBy: .Equal, toItem: view, attribute: .CenterY, multiplier: 1.0, constant: -30)
+        let c3 = NSLayoutConstraint(item: buttonPlus, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 30)
+        let c4 = NSLayoutConstraint(item: buttonPlus, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 30)
+        self.view.addConstraints([c1, c2, c3, c4])
+
         
         
         let buttonMinus = UIButton(type: .Custom)
