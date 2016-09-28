@@ -27,8 +27,13 @@ class CoreDataHelper: NSObject {
         let docsURL = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
         let storeURL = docsURL.URLByAppendingPathComponent("store.sqlite")
 
+        let options = [
+            NSInferMappingModelAutomaticallyOption: true,
+            NSMigratePersistentStoresAutomaticallyOption: true,
+            NSPersistentStoreUbiquitousContentNameKey: "123"]
+        
         do {
-            try self.coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: nil)
+            try self.coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: options)
         } catch {
             print("Can't open pesistent storage")
         }

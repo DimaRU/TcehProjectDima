@@ -40,6 +40,7 @@
 		0A3BB9641D82A80500F4BD4C /* EntryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryCell.swift; sourceTree = "<group>"; };
 		0A45B8161D95B9C8006547CD /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		0A52D43C1D80901A00237389 /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
+		0A8304C01D9C2C4F003542B2 /* Model 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 2.xcdatamodel"; sourceTree = "<group>"; };
 		0AB002001D7EE887003F641D /* VenueCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VenueCell.swift; sourceTree = "<group>"; };
 		0ACB03E71D7DD99500C3A6CB /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		0AF1BFEE1D9986D900219055 /* GraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
@@ -459,9 +460,10 @@
 		0A1D18241D871D6000B76B81 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				0A8304C01D9C2C4F003542B2 /* Model 2.xcdatamodel */,
 				0A1D18251D871D6000B76B81 /* Model.xcdatamodel */,
 			);
-			currentVersion = 0A1D18251D871D6000B76B81 /* Model.xcdatamodel */;
+			currentVersion = 0A8304C01D9C2C4F003542B2 /* Model 2.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

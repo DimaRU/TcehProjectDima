@@ -87,8 +87,8 @@ class GraphView: UIView {
         var startAngle = CGFloat(0)
         let circle = values.reduce(0, combine: +)
         
-        for i in 0..<values.count {
-            let angle = CGFloat(M_PI * 2 * values[i] / circle)
+        for (i, value) in values.enumerate() {
+            let angle = CGFloat(M_PI * 2 * value / circle)
             
             let portionPath = UIBezierPath()
             portionPath.moveToPoint(center)
@@ -102,6 +102,46 @@ class GraphView: UIView {
         }
         
     }
+
+    func drawBarChart(rect: CGRect) {
+        UIColor.blackColor().setStroke()
+        
+        let xAxis = UIBezierPath()
+        xAxis.lineWidth = 2
+        xAxis.moveToPoint(CGPoint(x: 8, y: rect.height - 8))
+        xAxis.addLineToPoint(CGPoint(x: rect.width, y: rect.height - 8))
+        xAxis.stroke()
+        
+        let yAxis = UIBezierPath()
+        yAxis.lineWidth = 2
+        yAxis.moveToPoint(CGPoint(x: 8, y: rect.height - 8))
+        yAxis.addLineToPoint(CGPoint(x: 8, y: 8))
+        yAxis.stroke()
+        
+        //рисуем значения
+        guard values.count > 0 else { return }
+        
+        let graphPath = UIBezierPath()
+        graphPath.lineWidth = 2
+        
+        let maxValue = values.maxElement()!
+
+        let barHeight = rect.height - 16
+        //let barWidth = (Double(rect.width) - 16) / Double(values.count)
+        
+        let stepX = (rect.width - 8) / CGFloat(values.count - 1)
+        for i in 1..<values.count {
+            let value = values[i]
+            
+            let point = CGPoint(x: 8 + stepX * CGFloat(i),
+                                y: rect.height - 8 - CGFloat(value) / CGFloat(maxValue) * barHeight)
+            graphPath.moveToPoint(point)
+            graphPath.addLineToPoint(point)
+        }
+        lineColor.setStroke()
+        graphPath.stroke()
+        
+    }
     
     override func drawRect(rect: CGRect) {
         super.drawRect(rect)
@@ -109,8 +149,10 @@ class GraphView: UIView {
         switch graphType {
         case 0:
             drawGraph(rect)
-        default:
+        case 1:
             drawPieChart(rect)
+        default:
+            drawBarChart(rect)
         }
 
     }
