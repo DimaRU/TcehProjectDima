@@ -106,28 +106,22 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     func setupScaleButtons() {
         
         let buttonPlus = UIButton(type: .Custom)
-        
         buttonPlus.translatesAutoresizingMaskIntoConstraints = false
-        
+      
         buttonPlus.setImage(UIImage(named: "1474761840_add.png"), forState: .Normal)
         buttonPlus.addTarget(self, action: #selector(tapButtonPlus), forControlEvents: .TouchUpInside)
         
         self.view.addSubview(buttonPlus)
         
         //Trailing edge
-        let c1 = NSLayoutConstraint(item: buttonPlus, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .TrailingMargin, multiplier: 1.0, constant: 8.0)
         // Up center
-        let c2 = NSLayoutConstraint(item: buttonPlus, attribute: .CenterY, relatedBy: .Equal, toItem: view, attribute: .CenterY, multiplier: 1.0, constant: -30)
-        let c3 = NSLayoutConstraint(item: buttonPlus, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 30)
-        let c4 = NSLayoutConstraint(item: buttonPlus, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 30)
-        self.view.addConstraints([c1, c2, c3, c4])
-
-        
+        NSLayoutConstraint(item: buttonPlus, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .TrailingMargin, multiplier: 1.0, constant: 8.0).active = true
+        NSLayoutConstraint(item: buttonPlus, attribute: .CenterY, relatedBy: .Equal, toItem: view, attribute: .CenterY, multiplier: 1.0, constant: -25).active = true
+        NSLayoutConstraint(item: buttonPlus, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 35).active = true
+        NSLayoutConstraint(item: buttonPlus, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 35).active = true
         
         let buttonMinus = UIButton(type: .Custom)
-        
         buttonMinus.translatesAutoresizingMaskIntoConstraints = false
-        buttonMinus.frame = CGRectMake(0, 0, 30, 30)
         
         buttonMinus.setImage(UIImage(named: "1474761917_sub.png"), forState: .Normal)
         buttonMinus.addTarget(self, action: #selector(tapButtonMinus), forControlEvents: .TouchUpInside)
@@ -136,9 +130,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
         //Trailing edge
         NSLayoutConstraint(item: buttonMinus, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .TrailingMargin, multiplier: 1.0, constant: 8).active = true
-        // Up center
-        NSLayoutConstraint(item: buttonMinus, attribute: .CenterY, relatedBy: .Equal, toItem: view, attribute: .CenterY, multiplier: 1.0, constant: 30).active = true
-        
+        NSLayoutConstraint(item: buttonMinus, attribute: .CenterY, relatedBy: .Equal, toItem: view, attribute: .CenterY, multiplier: 1.0, constant: 25).active = true
+        NSLayoutConstraint(item: buttonMinus, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 35).active = true
+        NSLayoutConstraint(item: buttonMinus, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 35).active = true
     }
     
     func mapTypeCotrolChanged(sender:UISegmentedControl!)
@@ -160,17 +154,22 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
         let mapTypeCotrol = UISegmentedControl(items: ["Map", "Hybrid", "Sattelite"])
         mapTypeCotrol.tintColor = UIColor.blackColor()
-        mapTypeCotrol.frame = CGRectMake(0, 500, 170, 20)
+        //mapTypeCotrol.frame = CGRectMake(0, 500, 170, 20)
         mapTypeCotrol.selectedSegmentIndex = 0
+
         //mapTypeCotrol.translatesAutoresizingMaskIntoConstraints = false
+        
         mapTypeCotrol.addTarget(self, action: #selector(mapTypeCotrolChanged), forControlEvents: .ValueChanged)
         
         self.view.addSubview(mapTypeCotrol)
 
-        NSLayoutConstraint(item: mapTypeCotrol, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .TrailingMargin, multiplier: 1.0, constant: 8).active = true
-        NSLayoutConstraint(item: mapTypeCotrol, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: 8).active = true
-        
+        let c1 = NSLayoutConstraint(item: mapTypeCotrol, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 170)
+        let c2 = NSLayoutConstraint(item: mapTypeCotrol, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 20)
+        let c3 = NSLayoutConstraint(item: mapTypeCotrol, attribute: .Left, relatedBy: .Equal, toItem: view, attribute: .Left, multiplier: 1.0, constant: 8)
+        let c4 = NSLayoutConstraint(item: mapTypeCotrol, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: 30)
+        self.view.addConstraints([c1, c2, c3, c4])
+
     }
-    
+
 }
 

@@ -8,8 +8,17 @@
 
 import UIKit
 
+
+enum GraphType: Int {
+    case Graph
+    case PieChart
+}
+
 @IBDesignable
 class GraphView: UIView {
+    
+    
+    @IBInspectable var graphType: Int = 0
     
     var values = [10, 20, 40, 10, 50, 100.0] {
         didSet {
@@ -17,11 +26,11 @@ class GraphView: UIView {
         }
     }
     
+    let PieChartColor: [UIColor] = [.redColor(), .greenColor(), .blueColor(), .cyanColor(), .yellowColor(), .magentaColor(), .orangeColor(), .purpleColor(), .brownColor(), .darkGrayColor() ]
+    
     @IBInspectable var lineColor: UIColor = UIColor.redColor()
     
-    override func drawRect(rect: CGRect) {
-        super.drawRect(rect)
-        
+    func drawGraph(rect: CGRect) {
         UIColor.blackColor().setStroke()
         
         let xAxis = UIBezierPath()
@@ -64,5 +73,45 @@ class GraphView: UIView {
         }
         lineColor.setStroke()
         graphPath.stroke()
+       
+    }
+    
+    func drawPieChart(rect: CGRect) {
+
+        guard values.count > 0 else { return }
+        
+        //Нужен центр и радиус
+        let center = CGPoint(x: CGFloat(rect.width) / 2 , y: CGFloat(rect.height) / 2)
+        let radius = CGFloat(min(rect.width, rect.height) - 20) / 2
+        
+        var startAngle = CGFloat(0)
+        let circle = values.reduce(0, combine: +)
+        
+        for i in 0..<values.count {
+            let angle = CGFloat(M_PI * 2 * values[i] / circle)
+            
+            let portionPath = UIBezierPath()
+            portionPath.moveToPoint(center)
+            portionPath.addArcWithCenter(center, radius: radius, startAngle: startAngle, endAngle: startAngle + angle , clockwise: true)
+            portionPath.closePath()
+
+            PieChartColor[i].setFill()
+            portionPath.fill()
+            
+            startAngle += angle
+        }
+        
+    }
+    
+    override func drawRect(rect: CGRect) {
+        super.drawRect(rect)
+        
+        switch graphType {
+        case 0:
+            drawGraph(rect)
+        default:
+            drawPieChart(rect)
+        }
+
     }
 }

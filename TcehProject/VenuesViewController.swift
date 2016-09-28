@@ -62,11 +62,10 @@ class VenuesViewController: UITableViewController, CLLocationManagerDelegate {
                     let latitude = obj["location"]["lat"].double!
                     let longitude = obj["location"]["lng"].double!
                     
-                    var categoryImageURL = "https://ss3.4sqi.net/img/categories_v2/shops/default_bg_64.png"
+                    var categoryImageURL = "https://ss3.4sqi.net/img/categories_v2/none_bg_64.png"
                     if let venueCategory = obj["categories"].array?.first {
                         categoryImageURL = venueCategory["icon"]["prefix"].string! + "bg_64" + venueCategory["icon"]["suffix"].string!
                     }
-                    print(categoryImageURL)
                     
                     let venue = Venue(name: name, latitude: latitude, longitude: longitude, distance: Int64(distance), categoryImageURL: categoryImageURL)
                     venues.append(venue)

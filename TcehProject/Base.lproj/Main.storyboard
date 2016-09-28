@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -333,13 +334,26 @@
                     <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Itv-qX-HU3">
+                                <segments>
+                                    <segment title="Map"/>
+                                    <segment title="Hybrid"/>
+                                    <segment title="Stellite"/>
+                                </segments>
+                            </segmentedControl>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Itv-qX-HU3" secondAttribute="trailing" constant="2" id="ENd-MS-F4p"/>
+                            <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="Itv-qX-HU3" secondAttribute="bottom" constant="2" id="ute-Yp-rWH"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map View" image="glyphicons-341-globe" id="cPa-gy-q4n"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-791" y="765"/>
+            <point key="canvasLocation" x="-791" y="743"/>
         </scene>
         <!--Statistics-->
         <scene sceneID="6Xp-tX-5Rj">
@@ -353,22 +367,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gws-uH-ZZ0" customClass="GraphView" customModule="TcehProject" customModuleProvider="target">
-                                <frame key="frameInset" minX="27" minY="44" width="308" height="354"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gws-uH-ZZ0" customClass="GraphView" customModule="TcehProject" customModuleProvider="target">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="graphType">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="KBR-6O-iV5">
+                                <segments>
+                                    <segment title="Graph"/>
+                                    <segment title="Pie chart"/>
+                                </segments>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Gws-uH-ZZ0" secondAttribute="trailing" constant="8" id="3aT-uH-yBx"/>
+                            <constraint firstItem="Gws-uH-ZZ0" firstAttribute="bottom" secondItem="unS-iK-Oit" secondAttribute="centerY" constant="-10" id="Hwc-ZK-DkF"/>
+                            <constraint firstItem="KBR-6O-iV5" firstAttribute="centerX" secondItem="unS-iK-Oit" secondAttribute="centerX" id="L0N-6a-DGC"/>
+                            <constraint firstItem="Gws-uH-ZZ0" firstAttribute="leading" secondItem="unS-iK-Oit" secondAttribute="leading" constant="8" id="Uk4-9s-pww"/>
+                            <constraint firstItem="KBR-6O-iV5" firstAttribute="centerY" secondItem="unS-iK-Oit" secondAttribute="centerY" id="cFt-ki-dVS"/>
+                            <constraint firstItem="Gws-uH-ZZ0" firstAttribute="top" secondItem="VL3-AI-52N" secondAttribute="bottom" constant="8" id="uXK-Zj-hee"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Statistics" id="w54-EQ-BZH"/>
+                    <tabBarItem key="tabBarItem" title="Statistics" image="glyphicons-41-stats" id="w54-EQ-BZH"/>
                     <connections>
                         <outlet property="lineGraphView" destination="Gws-uH-ZZ0" id="8XG-Iv-YIS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gOt-qS-JRk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1607.2" y="472.71364317841085"/>
+            <point key="canvasLocation" x="-1524" y="743"/>
         </scene>
         <!--Settings-->
         <scene sceneID="Uky-K2-D4N">
@@ -464,8 +495,8 @@
                     <connections>
                         <segue destination="Nvg-Wb-lvC" kind="relationship" relationship="viewControllers" id="7Dh-V4-03U"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
-                        <segue destination="wG3-yQ-xfx" kind="relationship" relationship="viewControllers" id="s61-D7-aRg"/>
                         <segue destination="K1R-QH-KLZ" kind="relationship" relationship="viewControllers" id="tKq-gP-pet"/>
+                        <segue destination="wG3-yQ-xfx" kind="relationship" relationship="viewControllers" id="s61-D7-aRg"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -477,5 +508,6 @@
         <image name="glyphicons-115-list" width="24" height="21"/>
         <image name="glyphicons-137-cogwheel" width="24" height="24"/>
         <image name="glyphicons-341-globe" width="24" height="24"/>
+        <image name="glyphicons-41-stats" width="26" height="25"/>
     </resources>
 </document>
