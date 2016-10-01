@@ -13,6 +13,7 @@ class CoreDataHelper: NSObject {
     let model: NSManagedObjectModel
     let coordinator: NSPersistentStoreCoordinator
     let context: NSManagedObjectContext
+    let concurrent: NSManagedObjectContext
     
     static let instance = CoreDataHelper()      // One instance per app only
     
@@ -40,5 +41,38 @@ class CoreDataHelper: NSObject {
         
         self.context = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
         self.context.persistentStoreCoordinator = self.coordinator
+        
+        self.concurrent = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
+        self.concurrent.persistentStoreCoordinator = self.coordinator
+        
+        super.init()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.corncurrentDidSave(_:)), name: NSManagedObjectContextDidSaveNotification, object: concurrent)
+        
+        
+    }
+    
+    func corncurrentDidSave(notification: NSNotification) {
+        context.performBlock({
+            if let updated = notification.userInfo?[NSUpdatedObjectsKey] as? [NSManagedObject] {
+                for obj in updated {
+                    // обновить состояние обекта до актуального
+                    self.context.objectWithID(obj.objectID).willAccessValueForKey(nil)
+                }
+            }
+            
+            self.context.mergeChangesFromContextDidSaveNotification(notification)
+            
+        })
+    }
+    
+    
+    func saveMain() {
+        do {
+            try context.save()
+        } catch let error {
+            print("Concurrent save error \(error)")
+        
+        }
     }
 }

@@ -27,6 +27,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     func setupMapView() {
 
         self.view.addSubview(mapView)
+        self.view.sendSubviewToBack(mapView)    //  Send it under storyboard controls
         //Размер + положение на экране
         mapView.frame = self.view.bounds
         //shortest way | old-school
@@ -137,7 +138,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     func mapTypeCotrolChanged(sender:UISegmentedControl!)
     {
-        print("Selected Segment Index: \(sender.selectedSegmentIndex)")
         switch sender.selectedSegmentIndex {
         case 0:
             mapView.mapType = .Standard
@@ -153,22 +153,18 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     func setupMapTypeControl() {
         
         let mapTypeCotrol = UISegmentedControl(items: ["Map", "Hybrid", "Sattelite"])
-        mapTypeCotrol.tintColor = UIColor.blackColor()
-        //mapTypeCotrol.frame = CGRectMake(0, 500, 170, 20)
-        mapTypeCotrol.selectedSegmentIndex = 0
 
-        //mapTypeCotrol.translatesAutoresizingMaskIntoConstraints = false
+        mapTypeCotrol.tintColor = UIColor.blackColor()
+        mapTypeCotrol.selectedSegmentIndex = 0
+        mapTypeCotrol.translatesAutoresizingMaskIntoConstraints = false
         
         mapTypeCotrol.addTarget(self, action: #selector(mapTypeCotrolChanged), forControlEvents: .ValueChanged)
-        
         self.view.addSubview(mapTypeCotrol)
 
-        let c1 = NSLayoutConstraint(item: mapTypeCotrol, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 170)
-        let c2 = NSLayoutConstraint(item: mapTypeCotrol, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 20)
-        let c3 = NSLayoutConstraint(item: mapTypeCotrol, attribute: .Left, relatedBy: .Equal, toItem: view, attribute: .Left, multiplier: 1.0, constant: 8)
-        let c4 = NSLayoutConstraint(item: mapTypeCotrol, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: 30)
-        self.view.addConstraints([c1, c2, c3, c4])
-
+//        NSLayoutConstraint(item: mapTypeCotrol, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 170).active = true
+//        NSLayoutConstraint(item: mapTypeCotrol, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 20).active = true
+        NSLayoutConstraint(item: mapTypeCotrol, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .TrailingMargin, multiplier: 1.0, constant: 8).active = true
+        NSLayoutConstraint(item: mapTypeCotrol, attribute: .Bottom, relatedBy: .Equal, toItem: self.bottomLayoutGuide, attribute: .Top, multiplier: 1.0, constant: -8).active = true
     }
 
 }

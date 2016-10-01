@@ -53,10 +53,16 @@ class NewEntryViewController: UIViewController, CategoriesViewControllerDelegate
                 
                 if let venue = selectedVenue, category = selectedCategory {
                     
-                    CoreDataHelper.instance.context.insertObject(venue)
-                    let entry = Entry(amount: amount, venue: venue, category: category)
-                    // Передать это нижестоящему классу (экрану)
-                    delegate?.entryCreated(entry)
+                    let concurrent = CoreDataHelper.instance.concurrent
+                        concurrent.performBlock {
+                        concurrent.insertObject(venue)
+                        let entry = Entry(amount: amount, venue: venue, category: category, context: concurrent)
+                            CoreDataHelper.instance.context.performBlock {
+                                let mainEntry = CoreDataHelper.instance.context.objectWithID(entry.objectID) as! Entry
+                                self.delegate?.entryCreated(mainEntry)
+                            }
+                    }
+
                 } else {
                     // Alert - Please select category and venue
                     let alert = UIAlertController(title: nil, message: "Please select category and venue", preferredStyle: .Alert)
