@@ -31,7 +31,8 @@ class CoreDataHelper: NSObject {
         let options = [
             NSInferMappingModelAutomaticallyOption: true,
             NSMigratePersistentStoresAutomaticallyOption: true,
-            NSPersistentStoreUbiquitousContentNameKey: "123"]
+            NSPersistentStoreUbiquitousContentNameKey: "123"
+        ]
         
         do {
             try self.coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: options)
@@ -47,13 +48,18 @@ class CoreDataHelper: NSObject {
         
         super.init()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.corncurrentDidSave(_:)), name: NSManagedObjectContextDidSaveNotification, object: concurrent)
+        NSNotificationCenter.defaultCenter().addObserver(self,
+                                                         selector: #selector(self.corncurrentDidSave(_:)),
+                                                         name: NSManagedObjectContextDidSaveNotification,
+                                                         object: concurrent)
         
         
     }
     
     func corncurrentDidSave(notification: NSNotification) {
+        
         context.performBlock({
+            
             if let updated = notification.userInfo?[NSUpdatedObjectsKey] as? [NSManagedObject] {
                 for obj in updated {
                     // обновить состояние обекта до актуального
@@ -71,8 +77,17 @@ class CoreDataHelper: NSObject {
         do {
             try context.save()
         } catch let error {
-            print("Concurrent save error \(error)")
-        
+            print("main save error \(error)")
         }
     }
+    
+    func saveConcurrent() {
+        do {
+            try concurrent.save()
+        } catch let error {
+            print("concurrent save error \(error)")
+        }
+    }
+    
+    
 }

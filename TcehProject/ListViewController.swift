@@ -4,7 +4,6 @@ class ListViewController: UIViewController, UITableViewDataSource, NewEntryViewC
 
     @IBOutlet weak var tableEntries: UITableView!
     
-    //var entries = [Entry]()
     var entries = Entry.loadEntries()
     
     override func viewDidLoad() {

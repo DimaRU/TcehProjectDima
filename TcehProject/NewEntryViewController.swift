@@ -54,13 +54,16 @@ class NewEntryViewController: UIViewController, CategoriesViewControllerDelegate
                 if let venue = selectedVenue, category = selectedCategory {
                     
                     let concurrent = CoreDataHelper.instance.concurrent
-                        concurrent.performBlock {
+                    concurrent.performBlock {
+                        
                         concurrent.insertObject(venue)
                         let entry = Entry(amount: amount, venue: venue, category: category, context: concurrent)
-                            CoreDataHelper.instance.context.performBlock {
-                                let mainEntry = CoreDataHelper.instance.context.objectWithID(entry.objectID) as! Entry
-                                self.delegate?.entryCreated(mainEntry)
-                            }
+                        CoreDataHelper.instance.saveConcurrent()
+                        
+                        CoreDataHelper.instance.context.performBlock {
+                            let mainEntry = CoreDataHelper.instance.context.objectWithID(entry.objectID) as! Entry
+                            self.delegate?.entryCreated(mainEntry)
+                        }
                     }
 
                 } else {
