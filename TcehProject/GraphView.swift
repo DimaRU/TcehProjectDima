@@ -114,18 +114,21 @@ class GraphView: UIView {
         //Нужен центр и радиус
         let center = CGPoint(x: CGFloat(rect.width) / 2 , y: CGFloat(rect.height) / 2)
         // biggest address
-        let radius = CGFloat(min(rect.width, rect.height) - 20) / 2
-        let dRadius = radius/3
+        let startRadius = CGFloat(min(rect.width, rect.height) - 20) / 2
+        let rInner = startRadius/3
+        let radius = startRadius - rInner
         
-        drawPieChartShifted(dRadius, rOuter: radius, center: center)
+        // ToDo: animate dRadius to zero
+        drawPieChartShifted(rInner, radius: radius, center: center)
     }
     
     //********************************************************************
-    func drawPieChartShifted(rInner: CGFloat, rOuter: CGFloat, center: CGPoint) {
+    func drawPieChartShifted(rInner: CGFloat, radius: CGFloat, center: CGPoint) {
         
         guard values.count > 0 else { return }
         
-        
+        let rOuter = radius + rInner
+ 
         var startAngle = CGFloat(0)
         let circle = values.reduce(0, combine: +)
         
