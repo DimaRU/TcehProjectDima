@@ -1,17 +1,28 @@
 import UIKit
+import CoreData
 
-class ListViewController: UIViewController, UITableViewDataSource, NewEntryViewControllerDelegate {
+class ListViewController: UIViewController, UITableViewDataSource, NewEntryViewControllerDelegate, NSFetchedResultsControllerDelegate {
 
     @IBOutlet weak var tableEntries: UITableView!
     
-    //var entries = [Entry]()
-    var entries = Entry.loadEntries()
+    //var entries = Entry.loadEntries()
+    var fetchedResultsController: NSFetchedResultsController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Декларируем, что этим классом мы будем обслуживать TableView внутри UIViewController
         tableEntries.dataSource = self
+        let request = NSFetchRequest(entityName: "Entry")
+        request.sortDescriptors = [ NSSortDescriptor(key: "createdAt", ascending: false) ]
+        
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: CoreDataHelper.instance.context, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultsController.delegate = self
+        
+        
+        do {
+            try fetchedResultsController.performFetch()
+        } catch { }
     }
     
     // Вызывается на все сиги
@@ -31,21 +42,32 @@ class ListViewController: UIViewController, UITableViewDataSource, NewEntryViewC
         
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return entries.count
+        if let sections = fetchedResultsController.sections {
+            let sectionInfo = sections[section]
+            return sectionInfo.numberOfObjects
+        }
+        return 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // Нужно сделать ячейку (EntryCell)
         let cell = tableView.dequeueReusableCellWithIdentifier("EntryCell") as! EntryCell
         
-        cell.categoryLabel.text = entries[indexPath.row].category
-        cell.amountLabel.text = String(format: "%.2f р.", entries[indexPath.row].amount)
+        let entry = fetchedResultsController.objectAtIndexPath(indexPath) as! Entry
+
+        cell.categoryLabel.text = entry.category
+        cell.amountLabel.text = String(format: "%.2f р.", entry.amount)
         
         return cell
     }
+    
+    func controllerDidChangeContent(controller:   NSFetchedResultsController) {
+        tableEntries.reloadData()
+    }
+    
 
     func entryCreated(entry: Entry) {
-        entries.insert(entry, atIndex: 0)
+//        entries.insert(entry, atIndex: 0)
         dismissViewControllerAnimated(true, completion: nil)
         
         // Обновляем экран

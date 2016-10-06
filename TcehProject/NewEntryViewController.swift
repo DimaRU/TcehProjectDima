@@ -8,6 +8,8 @@ protocol NewEntryViewControllerDelegate {
 
 class NewEntryViewController: UIViewController, CategoriesViewControllerDelegate, VenuesViewControllerDelegate, UITextFieldDelegate {
 
+    @IBOutlet weak var bottomTextFieldConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var textFieldAmount: UITextField!
     @IBOutlet weak var currencyLabel: UILabel!
     @IBOutlet weak var buttonCategories: UIButton!
@@ -32,6 +34,11 @@ class NewEntryViewController: UIViewController, CategoriesViewControllerDelegate
         
         textFieldAmount.rightView = UIView(frame: CGRect(x: 0, y: 0, width: offsetFromRight, height: 30))
         textFieldAmount.rightViewMode = .Always
+        
+        
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
     
     //вызывается перед самым показом экрана
@@ -41,8 +48,40 @@ class NewEntryViewController: UIViewController, CategoriesViewControllerDelegate
         textFieldAmount.becomeFirstResponder()
     }
     
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        let frame = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue
+        let duration = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? Double
+        
+        if let duration = duration, frame = frame?.CGRectValue() {
+            
+            bottomTextFieldConstraint.constant = frame.height + 16
+            UIView.animateWithDuration(duration, animations: {
+                
+                self.view.layoutIfNeeded()
+            })
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        let duration = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? Double
+        
+        if let duration = duration {
+            
+            bottomTextFieldConstraint.constant = 16
+            UIView.animateWithDuration(duration, animations: {
+                
+                self.view.layoutIfNeeded()
+            })
+        }
+    }
 
-
+    
+    
     //обработка нажатия на кнопку Done
     @IBAction func tapDone(sender: AnyObject) {
         if let text = textFieldAmount.text {
@@ -54,13 +93,16 @@ class NewEntryViewController: UIViewController, CategoriesViewControllerDelegate
                 if let venue = selectedVenue, category = selectedCategory {
                     
                     let concurrent = CoreDataHelper.instance.concurrent
-                        concurrent.performBlock {
+                    concurrent.performBlock {
+                        
                         concurrent.insertObject(venue)
                         let entry = Entry(amount: amount, venue: venue, category: category, context: concurrent)
-                            CoreDataHelper.instance.context.performBlock {
-                                let mainEntry = CoreDataHelper.instance.context.objectWithID(entry.objectID) as! Entry
-                                self.delegate?.entryCreated(mainEntry)
-                            }
+                        CoreDataHelper.instance.saveConcurrent()
+                        
+                        CoreDataHelper.instance.context.performBlock {
+                            let mainEntry = CoreDataHelper.instance.context.objectWithID(entry.objectID) as! Entry
+                            self.delegate?.entryCreated(mainEntry)
+                        }
                     }
 
                 } else {
