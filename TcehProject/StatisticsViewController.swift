@@ -28,4 +28,8 @@ class StatisticsViewController: UIViewController {
 
     }
 
+    @IBAction func selectGraphType(sender: UISegmentedControl) {
+        
+        lineGraphView.graphType = sender.selectedSegmentIndex
+    }
 }
