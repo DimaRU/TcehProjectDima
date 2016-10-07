@@ -27,11 +27,15 @@ class Entry: NSManagedObject {
         self.category = category
     }
     
-    class func loadEntries() -> [Entry] {
+    class func loadEntries(limit: Int? = nil) -> [Entry] {
         let request = NSFetchRequest(entityName: "Entry")
         request.sortDescriptors = [
             NSSortDescriptor(key: "createdAt", ascending: false)
         ]
+        
+        if let limit = limit {
+            request.fetchLimit = limit
+        }
         
         do {
             let results = try CoreDataHelper.instance.context.executeFetchRequest(request)

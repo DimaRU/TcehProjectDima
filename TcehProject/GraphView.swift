@@ -7,6 +7,37 @@
 //
 
 import UIKit
+import QuartzCore
+
+
+
+class GraphLayer: CALayer {
+    dynamic var progress: Double = 0
+    
+    override init(layer: AnyObject) {
+        super.init(layer: layer)
+        if let layer = layer as? GraphLayer {
+            self.progress = layer.progress
+        }
+    }
+    
+    required init?(coder aDecoder: NSCoder) { // Из storyboard
+        super.init(coder: aDecoder)
+    }
+    
+    override init() {
+        super.init()
+    }
+    
+    override class func needsDisplayForKey(key: String) -> Bool {
+        if key == "progress" {      // если меняется progress - запросить перерисовку
+            return true
+        }
+        return super.needsDisplayForKey(key)
+    }
+    
+}
+
 
 
 enum GraphType: Int {
@@ -36,7 +67,15 @@ class GraphView: UIView {
     
     @IBInspectable var lineColor: UIColor = UIColor.redColor()
     
-    func drawGraph(rect: CGRect) {
+    
+    override class func layerClass() -> AnyClass {
+        return GraphLayer.self
+    }
+    
+    
+    
+    
+    func drawLineGraph(rect: CGRect, progress: Double) {
         UIColor.blackColor().setStroke()
         
         let xAxis = UIBezierPath()
@@ -82,7 +121,7 @@ class GraphView: UIView {
        
     }
     
-    func drawPieChart(rect: CGRect) {
+    func drawPieChart(rect: CGRect, progress: Double) {
 
         guard values.count > 0 else { return }
         
@@ -110,7 +149,7 @@ class GraphView: UIView {
     }
     
     
-    func drawPieChartAnimated(rect: CGRect) {
+    func drawPieChartAnimated(rect: CGRect, progress: Double) {
         //Нужен центр и радиус
         let center = CGPoint(x: CGFloat(rect.width) / 2 , y: CGFloat(rect.height) / 2)
         // biggest address
@@ -176,7 +215,7 @@ class GraphView: UIView {
     
     
 
-    func drawBarChart(rect: CGRect) {
+    func drawBarChart(rect: CGRect, progress: Double) {
         UIColor.blackColor().setStroke()
         
         let xAxis = UIBezierPath()
@@ -216,19 +255,41 @@ class GraphView: UIView {
         
     }
     
-    override func drawRect(rect: CGRect) {
-        super.drawRect(rect)
+//    override func drawRect(rect: CGRect) {
+//        super.drawRect(rect)
+    //drawRect
+    override func drawLayer(layer: CALayer, inContext ctx: CGContext) {
+        let rect = CGContextGetClipBoundingBox(ctx)
         
+        UIGraphicsPushContext(ctx)
+        defer { UIGraphicsPopContext() }
+        
+        let progress = (layer.presentationLayer() as? GraphLayer)?.progress ?? 0
+    
         switch graphType {
         case 0:
-            drawGraph(rect)
+            drawLineGraph(rect, progress: progress)
         case 1:
-            drawPieChart(rect)
+            drawPieChart(rect, progress: progress)
         case 2:
-            drawPieChartAnimated(rect)
+            drawPieChartAnimated(rect, progress: progress)
         default:
-            drawBarChart(rect)
+            drawBarChart(rect, progress: progress)
         }
 
     }
+    
+    
+    func startAnimation(duration: Double) {
+        let animation = CABasicAnimation(keyPath: "progress")
+        animation.fromValue = 0
+        animation.toValue = 1
+        animation.duration = duration
+        animation.removedOnCompletion  = false
+        animation.fillMode = kCAFillModeForwards
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+        
+        layer.addAnimation(animation, forKey: "anykey")
+    }
+    
 }

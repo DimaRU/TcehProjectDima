@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A0F4F281DA6C9F500E678E6 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A0F4F271DA6C9F500E678E6 /* NotificationCenter.framework */; };
+		0A0F4F2B1DA6C9F500E678E6 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0F4F2A1DA6C9F500E678E6 /* TodayViewController.swift */; };
+		0A0F4F2E1DA6C9F500E678E6 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A0F4F2C1DA6C9F500E678E6 /* MainInterface.storyboard */; };
+		0A0F4F321DA6C9F500E678E6 /* TcehWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 0A0F4F261DA6C9F500E678E6 /* TcehWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		0A100D521D8DCD8800D012EE /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A100D511D8DCD8800D012EE /* Venue.swift */; };
 		0A1D18261D871D6000B76B81 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0A1D18241D871D6000B76B81 /* Model.xcdatamodeld */; };
 		0A1D18281D8720B900B76B81 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1D18271D8720B900B76B81 /* CoreDataHelper.swift */; };
@@ -15,6 +19,11 @@
 		0A3BB9651D82A80500F4BD4C /* EntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BB9641D82A80500F4BD4C /* EntryCell.swift */; };
 		0A45B8171D95B9C8006547CD /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A45B8161D95B9C8006547CD /* SettingsViewController.swift */; };
 		0A52D43D1D80901A00237389 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A52D43C1D80901A00237389 /* Entry.swift */; };
+		0A72A3A01DA849570006FE9A /* EntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BB9641D82A80500F4BD4C /* EntryCell.swift */; };
+		0A72A3A11DA84C390006FE9A /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A52D43C1D80901A00237389 /* Entry.swift */; };
+		0A72A3A21DA84C500006FE9A /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0A1D18241D871D6000B76B81 /* Model.xcdatamodeld */; };
+		0A72A3A31DA84C5F0006FE9A /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1D18271D8720B900B76B81 /* CoreDataHelper.swift */; };
+		0A72A3A51DA84C840006FE9A /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A100D511D8DCD8800D012EE /* Venue.swift */; };
 		0AB002011D7EE887003F641D /* VenueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB002001D7EE887003F641D /* VenueCell.swift */; };
 		0ACB03E81D7DD99500C3A6CB /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACB03E71D7DD99500C3A6CB /* CategoryCell.swift */; };
 		0AF1BFEF1D9986D900219055 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF1BFEE1D9986D900219055 /* GraphView.swift */; };
@@ -31,8 +40,39 @@
 		D5F4E5501D7753F3004E4BC3 /* NewEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F4E54F1D7753F3004E4BC3 /* NewEntryViewController.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		0A0F4F301DA6C9F500E678E6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D5F4E5301D773A0A004E4BC3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A0F4F251DA6C9F500E678E6;
+			remoteInfo = TcehWidget;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		0A0F4F361DA6C9F500E678E6 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				0A0F4F321DA6C9F500E678E6 /* TcehWidget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		0A0F4F261DA6C9F500E678E6 /* TcehWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TcehWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A0F4F271DA6C9F500E678E6 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		0A0F4F2A1DA6C9F500E678E6 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		0A0F4F2D1DA6C9F500E678E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		0A0F4F2F1DA6C9F500E678E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A100D511D8DCD8800D012EE /* Venue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
+		0A1B490B1DA6D2FB008DB503 /* TcehProject.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TcehProject.entitlements; sourceTree = "<group>"; };
+		0A1B490C1DA6D381008DB503 /* TcehWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TcehWidget.entitlements; sourceTree = "<group>"; };
 		0A1D18251D871D6000B76B81 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		0A1D18271D8720B900B76B81 /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		0A1F381C1D7CA852002FF1D4 /* VenuesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VenuesViewController.swift; sourceTree = "<group>"; };
@@ -62,6 +102,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		0A0F4F231DA6C9F500E678E6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A0F4F281DA6C9F500E678E6 /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D5F4E5351D773A0A004E4BC3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -74,6 +122,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A0F4F291DA6C9F500E678E6 /* TcehWidget */ = {
+			isa = PBXGroup;
+			children = (
+				0A1B490C1DA6D381008DB503 /* TcehWidget.entitlements */,
+				0A0F4F2A1DA6C9F500E678E6 /* TodayViewController.swift */,
+				0A0F4F2C1DA6C9F500E678E6 /* MainInterface.storyboard */,
+				0A0F4F2F1DA6C9F500E678E6 /* Info.plist */,
+			);
+			path = TcehWidget;
+			sourceTree = "<group>";
+		};
 		5791EC358295DBD1BFA94DEB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +147,7 @@
 			children = (
 				0AF2B0F21D98018E0032E340 /* MapKit.framework */,
 				97BCD9311BCF193DCE8F254F /* Pods_TcehProject.framework */,
+				0A0F4F271DA6C9F500E678E6 /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -96,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				D5F4E53A1D773A0A004E4BC3 /* TcehProject */,
+				0A0F4F291DA6C9F500E678E6 /* TcehWidget */,
 				D5F4E5391D773A0A004E4BC3 /* Products */,
 				5791EC358295DBD1BFA94DEB /* Pods */,
 				B10CBDEA4E957616797D6590 /* Frameworks */,
@@ -106,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				D5F4E5381D773A0A004E4BC3 /* TcehProject.app */,
+				0A0F4F261DA6C9F500E678E6 /* TcehWidget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -129,6 +191,7 @@
 				0A1D18271D8720B900B76B81 /* CoreDataHelper.swift */,
 				D5F4E5411D773A0A004E4BC3 /* Main.storyboard */,
 				D5F4E5461D773A0A004E4BC3 /* LaunchScreen.storyboard */,
+				0A1B490B1DA6D2FB008DB503 /* TcehProject.entitlements */,
 				0A1D18241D871D6000B76B81 /* Model.xcdatamodeld */,
 				D5F4E5441D773A0A004E4BC3 /* Assets.xcassets */,
 				D5F4E5491D773A0A004E4BC3 /* Info.plist */,
@@ -141,6 +204,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		0A0F4F251DA6C9F500E678E6 /* TcehWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0A0F4F351DA6C9F500E678E6 /* Build configuration list for PBXNativeTarget "TcehWidget" */;
+			buildPhases = (
+				0A0F4F221DA6C9F500E678E6 /* Sources */,
+				0A0F4F231DA6C9F500E678E6 /* Frameworks */,
+				0A0F4F241DA6C9F500E678E6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TcehWidget;
+			productName = TcehWidget;
+			productReference = 0A0F4F261DA6C9F500E678E6 /* TcehWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		D5F4E5371D773A0A004E4BC3 /* TcehProject */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D5F4E54C1D773A0A004E4BC3 /* Build configuration list for PBXNativeTarget "TcehProject" */;
@@ -151,10 +231,12 @@
 				D5F4E5361D773A0A004E4BC3 /* Resources */,
 				2C1D465BC0B60AB768091C8A /* [CP] Embed Pods Frameworks */,
 				ABBF2A94CF903239758769B6 /* [CP] Copy Pods Resources */,
+				0A0F4F361DA6C9F500E678E6 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				0A0F4F311DA6C9F500E678E6 /* PBXTargetDependency */,
 			);
 			name = TcehProject;
 			productName = TcehProject;
@@ -167,15 +249,28 @@
 		D5F4E5301D773A0A004E4BC3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0730;
+				LastSwiftUpdateCheck = 0800;
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = Borovikov;
 				TargetAttributes = {
+					0A0F4F251DA6C9F500E678E6 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 9BEQ8V4XH9;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
 					D5F4E5371D773A0A004E4BC3 = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = 9BEQ8V4XH9;
 						LastSwiftMigration = 0800;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
 							com.apple.Maps.iOS = {
 								enabled = 0;
 							};
@@ -197,11 +292,20 @@
 			projectRoot = "";
 			targets = (
 				D5F4E5371D773A0A004E4BC3 /* TcehProject */,
+				0A0F4F251DA6C9F500E678E6 /* TcehWidget */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		0A0F4F241DA6C9F500E678E6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A0F4F2E1DA6C9F500E678E6 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D5F4E5361D773A0A004E4BC3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -263,6 +367,19 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		0A0F4F221DA6C9F500E678E6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A72A3A31DA84C5F0006FE9A /* CoreDataHelper.swift in Sources */,
+				0A72A3A51DA84C840006FE9A /* Venue.swift in Sources */,
+				0A72A3A11DA84C390006FE9A /* Entry.swift in Sources */,
+				0A72A3A01DA849570006FE9A /* EntryCell.swift in Sources */,
+				0A0F4F2B1DA6C9F500E678E6 /* TodayViewController.swift in Sources */,
+				0A72A3A21DA84C500006FE9A /* Model.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D5F4E5341D773A0A004E4BC3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -289,7 +406,23 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		0A0F4F311DA6C9F500E678E6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0A0F4F251DA6C9F500E678E6 /* TcehWidget */;
+			targetProxy = 0A0F4F301DA6C9F500E678E6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
+		0A0F4F2C1DA6C9F500E678E6 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0A0F4F2D1DA6C9F500E678E6 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		D5F4E5411D773A0A004E4BC3 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -309,6 +442,45 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		0A0F4F331DA6C9F500E678E6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_ENTITLEMENTS = TcehWidget/TcehWidget.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 9BEQ8V4XH9;
+				INFOPLIST_FILE = TcehWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.Borovikov.TcehProject.TcehWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 2.3;
+			};
+			name = Debug;
+		};
+		0A0F4F341DA6C9F500E678E6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_ENTITLEMENTS = TcehWidget/TcehWidget.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 9BEQ8V4XH9;
+				INFOPLIST_FILE = TcehWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.Borovikov.TcehProject.TcehWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 2.3;
+			};
+			name = Release;
+		};
 		D5F4E54A1D773A0A004E4BC3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -403,8 +575,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = TcehProject/TcehProject.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 9BEQ8V4XH9;
 				INFOPLIST_FILE = TcehProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -421,8 +595,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = TcehProject/TcehProject.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 9BEQ8V4XH9;
 				INFOPLIST_FILE = TcehProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -436,6 +612,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0A0F4F351DA6C9F500E678E6 /* Build configuration list for PBXNativeTarget "TcehWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A0F4F331DA6C9F500E678E6 /* Debug */,
+				0A0F4F341DA6C9F500E678E6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D5F4E5331D773A0A004E4BC3 /* Build configuration list for PBXProject "TcehProject" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

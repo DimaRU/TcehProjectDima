@@ -25,13 +25,16 @@ class CoreDataHelper: NSObject {
         
         self.coordinator = NSPersistentStoreCoordinator(managedObjectModel: model)
         
-        let docsURL = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
+        //let docsURL = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
+        
+        let docsURL = fileManager.containerURLForSecurityApplicationGroupIdentifier("group.me.Borovikov.TcehProject")!
+        
         let storeURL = docsURL.URLByAppendingPathComponent("store.sqlite")
 
         let options = [
             NSInferMappingModelAutomaticallyOption: true,
             NSMigratePersistentStoresAutomaticallyOption: true,
-            NSPersistentStoreUbiquitousContentNameKey: "123"
+            //NSPersistentStoreUbiquitousContentNameKey: "123"
         ]
         
         do {
