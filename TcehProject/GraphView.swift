@@ -41,21 +41,21 @@ class GraphLayer: CALayer {
 
 
 enum GraphType: Int {
-    case Graph
+    case LineGraph
     case PieChart
+    case BarChar
 }
 
 @IBDesignable
 class GraphView: UIView {
     
-    
+    @IBInspectable var pieAnimationType = 0
     @IBInspectable var graphType: Int = 0 {
         didSet {
             self.setNeedsDisplay()
         }
     }
     
-    //let backgroundColor = UIColor.whiteColor()
 
     var values = [10, 20, 40, 10, 50, 100.0] {
         didSet {
@@ -121,53 +121,29 @@ class GraphView: UIView {
        
     }
     
-    func drawPieChart(rect: CGRect, progress: Double) {
-
-        guard values.count > 0 else { return }
-        
-        //Нужен центр и радиус
-        let center = CGPoint(x: CGFloat(rect.width) / 2 , y: CGFloat(rect.height) / 2)
-        let radius = CGFloat(min(rect.width, rect.height) - 20) / 2
-        
-        var startAngle = CGFloat(0)
-        let circle = values.reduce(0, combine: +)
-        
-        for (i, value) in values.enumerate() {
-            let angle = CGFloat(M_PI * 2 * value / circle)
-            
-            let portionPath = UIBezierPath()
-            portionPath.moveToPoint(center)
-            portionPath.addArcWithCenter(center, radius: radius, startAngle: startAngle, endAngle: startAngle + angle , clockwise: true)
-            portionPath.closePath()
-
-            PieChartColor[i].setFill()
-            portionPath.fill()
-            
-            startAngle += angle
-        }
-        
-    }
-    
     
     func drawPieChartAnimated(rect: CGRect, progress: Double) {
+        guard values.count > 0 else { return }
         //Нужен центр и радиус
         let center = CGPoint(x: CGFloat(rect.width) / 2 , y: CGFloat(rect.height) / 2)
         // biggest address
         let startRadius = CGFloat(min(rect.width, rect.height) - 20) / 2
-        let rInner = startRadius/3
-        let radius = startRadius - rInner
+        let radius = startRadius * 2 / 3
+
+        let rInner = startRadius/3 * CGFloat(1 - progress)
         
-        // ToDo: animate dRadius to zero
-        drawPieChartShifted(rInner, radius: radius, center: center)
+        switch pieAnimationType {
+        case 0:
+            drawPieChartAnimated1(radius, rInner: rInner, center: center)
+        case 1:
+            drawPieChartAnimated2(radius, center: center, progress: progress)
+        default:
+            drawPieChartAnimated3(radius, center: center, progress: progress)
+        }
     }
+        
     
-    //********************************************************************
-    func drawPieChartShifted(rInner: CGFloat, radius: CGFloat, center: CGPoint) {
-        
-        guard values.count > 0 else { return }
-        
-        let rOuter = radius + rInner
- 
+    func drawPieChartAnimated1(radius: CGFloat, rInner: CGFloat, center: CGPoint) {
         var startAngle = CGFloat(0)
         let circle = values.reduce(0, combine: +)
         
@@ -175,30 +151,28 @@ class GraphView: UIView {
             let angle = CGFloat(M_PI * 2 * value / circle)
             
             // Clear outer arc
-            let portionPath = UIBezierPath()
-            portionPath.moveToPoint(center)
-            portionPath.addArcWithCenter(center,
-                                         radius: rOuter,
-                                         startAngle: startAngle,
-                                         endAngle: startAngle + angle,
-                                         clockwise: true)
-            portionPath.closePath()
-            self.backgroundColor!.setFill()
-            //UIColor.grayColor().setFill()
-            portionPath.fill()
+//            let portionPath = UIBezierPath()
+//            portionPath.moveToPoint(center)
+//            portionPath.addArcWithCenter(center,
+//                                         radius: radius + rInner,
+//                                         startAngle: startAngle,
+//                                         endAngle: startAngle + angle,
+//                                         clockwise: true)
+//            portionPath.closePath()
+//            UIColor.lightGrayColor().setFill()
+//            portionPath.fill()
             
             // Draw outer-inner arc
             let x = center.x + rInner * cos(startAngle + angle/2)
             let y = center.y + rInner * sin(startAngle + angle/2)
             let centerInner = CGPoint(x: x, y: y)
-            let dAngle = angle * rInner/rOuter
             
             let drawPath = UIBezierPath()
             drawPath.moveToPoint(centerInner)
             drawPath.addArcWithCenter(centerInner,
-                                      radius: rOuter-rInner,
-                                      startAngle: startAngle + dAngle/2,
-                                      endAngle: startAngle + angle - dAngle/2,
+                                      radius: radius,
+                                      startAngle: startAngle,
+                                      endAngle: startAngle + angle,
                                       clockwise: true)
             drawPath.closePath()
             PieChartColor[i].setFill()
@@ -209,10 +183,55 @@ class GraphView: UIView {
         
     }
     
+    func drawPieChartAnimated2(radius: CGFloat, center: CGPoint, progress: Double) {
+        
+        var startAngle = CGFloat(0)
+        let circle = values.reduce(0, combine: +)
+        
+        for (i, value) in values.enumerate() {
+            let angle = CGFloat(M_PI * 2 * value / circle)
+            
+            let portionPath = UIBezierPath()
+            portionPath.moveToPoint(center)
+            portionPath.addArcWithCenter(center,
+                                         radius: radius,
+                                         startAngle: startAngle,
+                                         endAngle: startAngle + angle * CGFloat(progress),
+                                         clockwise: true)
+            portionPath.closePath()
+            
+            PieChartColor[i].setFill()
+            portionPath.fill()
+            
+            startAngle += angle
+        }
+        
+    }
 
-    
-    
-    
+    func drawPieChartAnimated3(radius: CGFloat, center: CGPoint, progress: Double) {
+        
+        var startAngle = CGFloat(0)
+        let circle = values.reduce(0, combine: +)
+        
+        for (i, value) in values.enumerate() {
+            let angle = CGFloat(M_PI * 2 * progress * value / circle)
+            
+            let portionPath = UIBezierPath()
+            portionPath.moveToPoint(center)
+            portionPath.addArcWithCenter(center,
+                                         radius: radius,
+                                         startAngle: startAngle,
+                                         endAngle: startAngle + angle,
+                                         clockwise: true)
+            portionPath.closePath()
+            
+            PieChartColor[i].setFill()
+            portionPath.fill()
+            
+            startAngle += angle
+        }
+        
+    }
     
 
     func drawBarChart(rect: CGRect, progress: Double) {
@@ -270,8 +289,6 @@ class GraphView: UIView {
         case 0:
             drawLineGraph(rect, progress: progress)
         case 1:
-            drawPieChart(rect, progress: progress)
-        case 2:
             drawPieChartAnimated(rect, progress: progress)
         default:
             drawBarChart(rect, progress: progress)
@@ -281,6 +298,10 @@ class GraphView: UIView {
     
     
     func startAnimation(duration: Double) {
+        pieAnimationType += 1
+        if pieAnimationType > 2 {
+            pieAnimationType = 0
+        }
         let animation = CABasicAnimation(keyPath: "progress")
         animation.fromValue = 0
         animation.toValue = 1

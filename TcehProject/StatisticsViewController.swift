@@ -25,11 +25,14 @@ class StatisticsViewController: UIViewController {
         
         let values = entries.reverse().map({ $0.amount })
         lineGraphView.values = values
+        
+        lineGraphView.startAnimation(5)
 
     }
 
     @IBAction func selectGraphType(sender: UISegmentedControl) {
         
         lineGraphView.graphType = sender.selectedSegmentIndex
+        lineGraphView.startAnimation(1.5)
     }
 }
