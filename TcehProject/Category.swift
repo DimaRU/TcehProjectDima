@@ -64,9 +64,41 @@ class Category: NSObject {
             if let error = error {
                 print("Loading error: \(error)")
             }
-           
+            
         }
         
     }
     
+    
+    class func deleteCategory(name: String, completion: (() -> Void)) {
+        
+        let container = CKContainer(identifier: "iCloud.com.tceh.app")
+        let database = container.publicCloudDatabase
+        
+        let query = CKQuery(recordType: "Category",
+                            predicate: NSPredicate(format: "name = %@", name))
+        
+        database.performQuery(query, inZoneWithID: nil) { records, error in
+            if let error = error {
+                print("Loading error: \(error)")
+            }
+            
+            guard let records = records else { return }
+            guard records.count > 0 else { print("No records found: \(name)") ; return }
+            
+            let record = records[0]
+            print(record)
+            
+            database.deleteRecordWithID(record.recordID) { recordID, error in
+                if let error = error {
+                    print("Delete error: \(error)")
+                } else {
+                    completion()
+                }
+            }
+            
+        }
+    }
+    
+        
 }
