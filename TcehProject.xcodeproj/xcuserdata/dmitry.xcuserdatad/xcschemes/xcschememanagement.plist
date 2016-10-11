@@ -9,6 +9,16 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>TcehWatch (Notification).xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
+		<key>TcehWatch.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
 		<key>TcehWidget.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -18,6 +28,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>0A0F4F251DA6C9F500E678E6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>0A561BCB1DAC1DAB002750CF</key>
 		<dict>
 			<key>primary</key>
 			<true/>

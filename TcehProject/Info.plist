@@ -35,6 +35,8 @@
 	<true/>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>To get nearby venues</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Used to save stat graphs</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

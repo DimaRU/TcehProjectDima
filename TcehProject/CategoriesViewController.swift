@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CloudKit
 
 protocol CategoriesViewControllerDelegate {
     func categorySelected(category: String)
@@ -15,25 +16,8 @@ protocol CategoriesViewControllerDelegate {
 }
 
 class CategoriesViewController: UITableViewController {
-
-    var categories: [String] {
-        get {
-            if let storedCategories = NSUserDefaults.standardUserDefaults().objectForKey("categories") as? [String] {
-                if storedCategories != [] {
-                    return storedCategories
-                }
-            }
-            // Inital values list, localisation!!!
-            let storedCategories = ["Food", "Entertainment", "Transport", "Flat", "Gas", "Etc"]
-            NSUserDefaults.standardUserDefaults().setObject(storedCategories, forKey: "categories")
-            //NSUserDefaults.standardUserDefaults().synchronize()
-            return storedCategories
-        }
-        set {
-            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "categories")
-            //NSUserDefaults.standardUserDefaults().synchronize()
-        }
-    }
+    
+    var categories = [String]()
 
     var delegate: CategoriesViewControllerDelegate?
 
@@ -41,11 +25,18 @@ class CategoriesViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        Category.loadCategories { categories in
+            
+            if categories.count > 0 {
+                self.categories = categories.map({ $0.name })
+                
+                //обновляем таблицу через Main-thread
+                NSOperationQueue.mainQueue().addOperationWithBlock({
+                    self.tableView.reloadData()
+                })
+            }
+        }
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     @IBAction func tapCancel(sender: AnyObject) {
@@ -63,12 +54,15 @@ class CategoriesViewController: UITableViewController {
         })
    
         let okAction = UIAlertAction(title: "Ok", style: .Default) {_ in
-            if let text = alert.textFields?.first?.text {
-            self.categories.append(text)
-            //self.tableView.reloadData()
-
-            let indexPath = NSIndexPath(forRow: self.categories.count - 1, inSection: 0)
-            self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            if let category = alert.textFields?.first?.text {
+                self.categories.append(category)
+                
+                //self.tableView.reloadData()
+                Category.saveCategory(category)
+                
+                
+                let indexPath = NSIndexPath(forRow: self.categories.count - 1, inSection: 0)
+                self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
             }
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)

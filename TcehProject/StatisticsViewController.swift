@@ -15,8 +15,30 @@ class StatisticsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Action, target: self, action: #selector(tapAction))
         
     }
+    
+    func tapAction() {
+        
+        UIGraphicsBeginImageContextWithOptions(lineGraphView.bounds.size, true, 0)
+        defer {
+            UIGraphicsEndImageContext()
+        }
+        
+        
+        lineGraphView.drawViewHierarchyInRect(lineGraphView.bounds, afterScreenUpdates: false)
+        
+        // Снапшот экрана
+        // let view = lineGraphView.snapshotViewAfterScreenUpdates(false)
+        
+        let image = UIGraphicsGetImageFromCurrentImageContext()!
+        
+        let controller = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        
+        presentViewController(controller, animated: true, completion: nil)
+    }
+    
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)

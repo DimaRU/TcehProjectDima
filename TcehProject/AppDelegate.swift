@@ -40,6 +40,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
+   
+        switch url.host! {
+        case "newentry":
+            // открыть экран новой записи
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            if let controller =
+                storyboard.instantiateViewControllerWithIdentifier("NewEntry") as?
+                NewEntryViewController {
+                
+                let tabController = window?.rootViewController as? UITabBarController
+                let navigationController = tabController?.viewControllers?[0] as! UINavigationController
+                
+                let listController = navigationController.viewControllers[0] as! ListViewController
+                
+                controller.delegate = listController
+                
+                listController.presentViewController(controller, animated: false, completion: nil)
+                
+            }
+            
+        default:
+            break
+        }
+        
+        print(url.scheme)
+        return true
+    }
 
 }
 

@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -341,9 +341,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-791" y="743"/>
+            <point key="canvasLocation" x="148" y="742.5787106446777"/>
         </scene>
-        <!--Statistics-->
+        <!--Statistics View Controller-->
         <scene sceneID="6Xp-tX-5Rj">
             <objects>
                 <viewController id="K1R-QH-KLZ" customClass="StatisticsViewController" customModule="TcehProject" customModuleProvider="target" sceneMemberID="viewController">
@@ -384,14 +384,14 @@
                             <constraint firstItem="Gws-uH-ZZ0" firstAttribute="top" secondItem="VL3-AI-52N" secondAttribute="bottom" constant="8" id="uXK-Zj-hee"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Statistics" image="glyphicons-41-stats" id="w54-EQ-BZH"/>
+                    <navigationItem key="navigationItem" id="Q4N-ZE-ZQk"/>
                     <connections>
                         <outlet property="lineGraphView" destination="Gws-uH-ZZ0" id="8XG-Iv-YIS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gOt-qS-JRk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1524" y="743"/>
+            <point key="canvasLocation" x="-584.79999999999995" y="742.5787106446777"/>
         </scene>
         <!--Settings-->
         <scene sceneID="Uky-K2-D4N">
@@ -455,7 +455,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mg1-S6-mch" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="725.60000000000002" y="339.58020989505252"/>
+            <point key="canvasLocation" x="1664.8" y="339.58020989505252"/>
         </scene>
         <!--Settings-->
         <scene sceneID="RMN-dA-GDn">
@@ -472,7 +472,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UOj-YJ-AMD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="12" y="340"/>
+            <point key="canvasLocation" x="951.20000000000005" y="339.58020989505252"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -487,13 +487,32 @@
                     <connections>
                         <segue destination="Nvg-Wb-lvC" kind="relationship" relationship="viewControllers" id="7Dh-V4-03U"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
-                        <segue destination="K1R-QH-KLZ" kind="relationship" relationship="viewControllers" id="tKq-gP-pet"/>
+                        <segue destination="EXK-Ea-UTw" kind="relationship" relationship="viewControllers" id="tKq-gP-pet"/>
                         <segue destination="wG3-yQ-xfx" kind="relationship" relationship="viewControllers" id="s61-D7-aRg"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-791" y="-1"/>
+        </scene>
+        <!--Statistics-->
+        <scene sceneID="LWV-oM-z7w">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="EXK-Ea-UTw" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Statistics" image="glyphicons-41-stats" id="w54-EQ-BZH"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="lxx-Eu-ABJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="K1R-QH-KLZ" kind="relationship" relationship="rootViewController" id="1H7-12-75N"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Grm-kR-Auk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1524" y="742.5787106446777"/>
         </scene>
     </scenes>
     <resources>
